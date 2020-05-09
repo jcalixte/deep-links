@@ -37,7 +37,7 @@ export default new Vuex.Store<State>({
     }
   },
   actions: {
-    addLink({ state, commit }, link: Link) {
+    addLink({ commit }, link: Link) {
       commit(ADD_LINK, link)
     },
     removeLink({ commit }, slug: string) {
