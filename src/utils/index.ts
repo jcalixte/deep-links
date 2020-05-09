@@ -15,10 +15,10 @@ export const slug = (text: string) => {
 }
 
 export const generateUri = (link: Link) => {
-  const uri = `${link.prefix}://${link.path}/`
-  const queryStrings = link.queries
-    .map((param) => `${param.key}=${param.value}`)
-    .join('&')
+  const path = link.path ? `${link.path}/` : ''
+  const uri = `${link.prefix}://${path}`
+  const queries = link.queries.map((param) => `${param.key}=${param.value}`)
+  const queryStrings = queries.length ? `?${queries.join('&')}` : ''
 
-  return `${uri}?${queryStrings}`
+  return `${uri}${queryStrings}`
 }

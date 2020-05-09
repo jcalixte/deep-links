@@ -39,5 +39,6 @@ export default class LinkItem extends Vue {
 
 <style scoped lang="scss">
 .link-item {
+  text-align: center;
 }
 </style>

@@ -3,9 +3,7 @@
     <header>
       <img alt="Vue logo" src="@/assets/logo.png" />
     </header>
-    <section>
-      <LinkList />
-    </section>
+    <LinkList />
   </div>
 </template>
 
@@ -24,6 +22,11 @@ export default class Home extends Vue {}
 </script>
 
 <style lang="scss" scoped>
+.home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 header {
   text-align: center;
 }

@@ -1,13 +1,20 @@
 <template>
-  <ul class="link-list">
-    <li v-for="link in links" :key="link.slug" class="link-li">
-      <LinkItem class="link-item" :link="link">
-        <button class="button is-danger" @click="removeLink(link.slug)">
-          delete
-        </button>
-      </LinkItem>
-    </li>
-  </ul>
+  <section class="link-list">
+    <ul v-if="links.length">
+      <li v-for="link in links" :key="link.slug" class="link-li">
+        <LinkItem class="link-item" :link="link">
+          <button class="button is-danger" @click="removeLink(link.slug)">
+            delete
+          </button>
+        </LinkItem>
+      </li>
+    </ul>
+    <p class="no-link" v-else>
+      <router-link class="button is-primary" :to="{ name: 'LinkCreate' }"
+        >New link</router-link
+      >
+    </p>
+  </section>
 </template>
 
 <script lang="ts">
@@ -33,6 +40,11 @@ export default class LinkList extends Vue {
 @import '@/styles/variables';
 
 .link-list {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   .link-li {
     margin: $spacing;
     display: flex;

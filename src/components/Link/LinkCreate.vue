@@ -1,5 +1,11 @@
 <template>
   <div class="link-create card">
+    <section class="display-uri">
+      <button class="button is-info" @click="displayUri = !displayUri">
+        display URI
+      </button>
+      <code v-show="displayUri">{{ generatedURI }}</code>
+    </section>
     <form @submit.prevent="submit">
       <div class="card-content">
         <div class="field">
@@ -82,14 +88,15 @@ import { slug, generateUri } from '@/utils'
   }
 })
 export default class LinkCreate extends Vue {
-  name = ''
-  prefix = ''
-  path = ''
-  queries: QueryString[] = []
   @Action
   addLink!: (link: Link) => void
   @Prop({ type: Object, default: () => null })
   link!: Link | null
+  name = ''
+  prefix = ''
+  path = ''
+  queries: QueryString[] = []
+  displayUri = false
 
   mounted() {
     if (this.link) {
@@ -169,5 +176,13 @@ fieldset {
     align-items: center;
     gap: $spacing;
   }
+}
+
+.display-uri {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 $spacing;
+  padding: $spacing 0;
 }
 </style>
