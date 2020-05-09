@@ -11,6 +11,13 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
+    path: '/link/:slug',
+    name: 'Link',
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "link" */ '@/views/LinkPage.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')

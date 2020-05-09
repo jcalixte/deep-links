@@ -1,20 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
+    <div id="nav" class="buttons is-centered">
+      <router-link class="button is-primary" to="/">App</router-link>
+      <router-link class="button is-primary" to="/about">About</router-link>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
+@import './styles';
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  margin: $spacing 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #nav {
@@ -22,10 +24,9 @@
 
   a {
     font-weight: bold;
-    color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: $dark-primary;
     }
   }
 }
