@@ -11,3 +11,13 @@
     </p>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.about {
+  max-width: 800px;
+  margin: auto;
+  h1 {
+    text-align: center;
+  }
+}
+</style>

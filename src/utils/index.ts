@@ -16,7 +16,7 @@ export const slug = (text: string) => {
 
 export const generateUri = (link: Link) => {
   const uri = `${link.prefix}://${link.path}/`
-  const queryStrings = link.params
+  const queryStrings = link.queries
     .map((param) => `${param.key}=${param.value}`)
     .join('&')
 

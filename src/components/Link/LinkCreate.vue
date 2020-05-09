@@ -1,14 +1,12 @@
 <template>
   <div class="link-create card">
-    <header>
-      <h1 class="title is-1">Create a deep link</h1>
-    </header>
     <form @submit.prevent="submit">
       <div class="card-content">
         <div class="field">
-          <label class="label">Name</label>
+          <label class="label" for="name">Name</label>
           <div class="control">
             <input
+              id="name"
               class="input is-rounded"
               type="text"
               placeholder="Associate a name with the deeplink"
@@ -17,23 +15,27 @@
           </div>
         </div>
         <div class="field">
-          <label class="label">Prefix</label>
+          <label class="label" for="prefix">Prefix</label>
           <div class="control">
             <input
+              id="prefix"
               class="input is-rounded"
               type="text"
-              placeholder="ex: spotify"
+              autocorrect="off"
+              autocapitalize="none"
+              placeholder="e.g.: spotify"
               v-model="prefix"
             />
           </div>
         </div>
         <div class="field">
-          <label class="label">Path</label>
+          <label class="label" for="path">Path</label>
           <div class="control">
             <input
+              id="path"
               class="input is-rounded"
               type="text"
-              placeholder="path"
+              placeholder="e.g.: album:12345"
               v-model="path"
             />
           </div>
@@ -44,40 +46,17 @@
               <span>Query parameters</span>
               <button
                 class="button is-info is-light is-rounded"
-                @click="addParam"
+                @click="addQuery"
               >
                 add
               </button>
             </div>
           </legend>
-          <div
-            class="columns"
-            v-for="(param, key) in params"
-            :key="`${key}-${param.key}`"
-          >
-            <div class="column">
-              <label class="label">key</label>
-              <div class="control">
-                <input
-                  class="input"
-                  type="text"
-                  placeholder="param key"
-                  v-model="params[key].key"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <label class="label">value</label>
-              <div class="control">
-                <input
-                  class="input"
-                  type="text"
-                  placeholder="param value"
-                  v-model="params[key].value"
-                />
-              </div>
-            </div>
-          </div>
+          <QueryCreate
+            v-for="(query, i) in queries"
+            :key="i"
+            :query="queries[i]"
+          />
         </fieldset>
         <footer class="card-footer">
           <button class="button is-primary card-footer-item" type="submit">
@@ -96,12 +75,16 @@ import { QueryString } from '@/models/queryString'
 import { Link } from '@/models/link'
 import { slug, generateUri } from '@/utils'
 
-@Component
+@Component({
+  components: {
+    QueryCreate: () => import('@/components/Query/QueryCreate.vue')
+  }
+})
 export default class LinkCreate extends Vue {
   name = ''
   prefix = ''
   path = ''
-  params: QueryString[] = []
+  queries: QueryString[] = []
   @Action
   addLink!: (link: Link) => void
 
@@ -118,8 +101,8 @@ export default class LinkCreate extends Vue {
     })
   }
 
-  addParam() {
-    this.params.push({
+  addQuery() {
+    this.queries.push({
       key: '',
       value: ''
     })
@@ -129,13 +112,13 @@ export default class LinkCreate extends Vue {
     return this.name && this.prefix
   }
 
-  get sanitizedParams(): QueryString[] {
+  get sanitizedqueries(): QueryString[] {
     const hasValidKey = (key: string) => !!key
     const hasValidValue = (value: string | number) =>
       value !== '' && value !== null && value !== undefined
 
-    return this.params.filter(
-      (param) => hasValidKey(param.key) && hasValidValue(param.value)
+    return this.queries.filter(
+      (query) => hasValidKey(query.key) && hasValidValue(query.value)
     )
   }
 
@@ -145,7 +128,7 @@ export default class LinkCreate extends Vue {
       slug: slug(this.name),
       prefix: this.prefix.toLowerCase(),
       path: this.path,
-      params: this.sanitizedParams
+      queries: this.sanitizedqueries
     }
   }
 
@@ -156,7 +139,7 @@ export default class LinkCreate extends Vue {
 </script>
 
 <style scoped lang="scss">
-@import '../../styles/variables';
+@import '@/styles/variables';
 
 .link-create {
   max-width: 700px;
@@ -164,6 +147,7 @@ export default class LinkCreate extends Vue {
 
   header {
     margin: $spacing;
+    padding: 1.5rem 0;
   }
 }
 fieldset {

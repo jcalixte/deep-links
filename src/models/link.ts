@@ -5,5 +5,5 @@ export interface Link {
   slug: string
   prefix: string
   path: string
-  params: QueryString[]
+  queries: QueryString[]
 }

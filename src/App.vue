@@ -3,6 +3,9 @@
     <router-view />
     <div id="nav" class="buttons is-centered">
       <router-link class="button is-primary" to="/">App</router-link>
+      <router-link class="button is-primary" :to="{ name: 'LinkCreate' }"
+        >New</router-link
+      >
       <router-link class="button is-primary" to="/about">About</router-link>
     </div>
   </div>

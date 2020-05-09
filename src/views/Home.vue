@@ -4,7 +4,6 @@
       <img alt="Vue logo" src="@/assets/logo.png" />
     </header>
     <section>
-      <LinkCreate />
       <LinkList />
     </section>
   </div>
