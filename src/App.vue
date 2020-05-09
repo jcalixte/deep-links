@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <header>
+      <router-link to="/">
+        <img alt="Vue logo" src="@/assets/logo.png" />
+      </router-link>
+    </header>
     <router-view />
     <div id="nav" class="buttons is-centered">
       <router-link class="button is-primary" to="/">Links</router-link>
@@ -32,5 +37,8 @@
       color: $dark-primary;
     }
   }
+}
+header {
+  text-align: center;
 }
 </style>

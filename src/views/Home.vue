@@ -1,10 +1,5 @@
 <template>
   <div class="home">
-    <header>
-      <router-link to="/">
-        <img alt="Vue logo" src="@/assets/logo.png" />
-      </router-link>
-    </header>
     <LinkList />
   </div>
 </template>
@@ -28,8 +23,5 @@ export default class Home extends Vue {}
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-header {
-  text-align: center;
 }
 </style>
