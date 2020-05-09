@@ -1,6 +1,9 @@
 <template>
   <div class="link-item">
     <h1 class="title is-1">{{ link.name }}</h1>
+    <h2 class="subtitle is-2">
+      <code>{{ uri }}</code>
+    </h2>
     <LinkCreate :link="link" v-if="modify">
       <button class="button is-info" @click="modify = !modify">
         cancel
@@ -33,6 +36,10 @@ export default class LinkItem extends Vue {
 
   go() {
     location.href = generateUri(this.link)
+  }
+
+  get uri() {
+    return generateUri(this.link)
   }
 }
 </script>

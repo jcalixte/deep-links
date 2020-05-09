@@ -1,10 +1,10 @@
 <template>
   <div class="link-create card">
     <section class="display-uri">
-      <button class="button is-info" @click="displayUri = !displayUri">
-        display URI
-      </button>
-      <code v-show="displayUri">{{ generatedURI }}</code>
+      <p>
+        URI generated:
+        <code v-show="generatedURI">{{ generatedURI }}</code>
+      </p>
     </section>
     <form @submit.prevent="submit">
       <div class="card-content">
@@ -53,6 +53,7 @@
               <button
                 class="button is-info is-light is-rounded"
                 @click="addQuery"
+                type="button"
               >
                 add
               </button>
@@ -96,7 +97,6 @@ export default class LinkCreate extends Vue {
   prefix = ''
   path = ''
   queries: QueryString[] = []
-  displayUri = false
 
   mounted() {
     if (this.link) {
