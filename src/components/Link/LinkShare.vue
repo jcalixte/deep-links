@@ -1,6 +1,10 @@
 <template>
   <div class="link-share">
-    <button class="button is-success" v-if="canShare" @click="share">
+    <button
+      class="button share-button is-success"
+      v-if="canShare"
+      @click="share"
+    >
       share
     </button>
     <section v-else>
@@ -71,6 +75,10 @@ export default class LinkShare extends Vue {
     flex-direction: column;
     align-items: center;
     padding: 0 0 $spacing;
+  }
+
+  .share-button {
+    margin: 0 0 $spacing;
   }
 }
 </style>
