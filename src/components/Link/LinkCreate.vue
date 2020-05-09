@@ -58,10 +58,11 @@
             :query="queries[i]"
           />
         </fieldset>
-        <footer class="card-footer">
-          <button class="button is-primary card-footer-item" type="submit">
+        <footer class="buttons is-centered">
+          <button class="button is-primary" type="submit">
             create
           </button>
+          <slot></slot>
         </footer>
       </div>
     </form>
@@ -69,7 +70,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import { Action } from 'vuex-class'
 import { QueryString } from '@/models/queryString'
 import { Link } from '@/models/link'
@@ -87,16 +88,27 @@ export default class LinkCreate extends Vue {
   queries: QueryString[] = []
   @Action
   addLink!: (link: Link) => void
+  @Prop({ type: Object, default: () => null })
+  link!: Link | null
+
+  mounted() {
+    if (this.link) {
+      this.name = this.link.name
+      this.prefix = this.link.prefix
+      this.path = this.link.path
+      this.queries = this.link.queries
+    }
+  }
 
   submit() {
     if (!this.isFormValid) {
       return
     }
-    this.addLink(this.link)
+    this.addLink(this.newLink)
     this.$router.push({
       name: 'Link',
       params: {
-        slug: this.link.slug
+        slug: this.newLink.slug
       }
     })
   }
@@ -122,7 +134,7 @@ export default class LinkCreate extends Vue {
     )
   }
 
-  get link(): Link {
+  get newLink(): Link {
     return {
       name: this.name,
       slug: slug(this.name),
@@ -133,7 +145,7 @@ export default class LinkCreate extends Vue {
   }
 
   get generatedURI(): string {
-    return generateUri(this.link)
+    return generateUri(this.newLink)
   }
 }
 </script>

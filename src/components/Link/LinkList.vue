@@ -1,10 +1,11 @@
 <template>
   <ul class="link-list">
     <li v-for="link in links" :key="link.slug" class="link-li">
-      <LinkItem :link="link" />
-      <button class="button is-danger" @click="removeLink(link.slug)">
-        delete
-      </button>
+      <LinkItem class="link-item" :link="link">
+        <button class="button is-danger" @click="removeLink(link.slug)">
+          delete
+        </button>
+      </LinkItem>
     </li>
   </ul>
 </template>
@@ -37,6 +38,10 @@ export default class LinkList extends Vue {
     display: flex;
     justify-content: space-around;
     align-items: center;
+  }
+  .link-item {
+    flex: 1;
+    gap: $spacing;
   }
 }
 </style>
