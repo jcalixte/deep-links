@@ -16,8 +16,8 @@
 
 #app {
   margin: $spacing 0;
-  min-height: 100vh;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
 }

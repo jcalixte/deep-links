@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <header>
-      <img alt="Vue logo" src="@/assets/logo.png" />
+      <router-link to="/">
+        <img alt="Vue logo" src="@/assets/logo.png" />
+      </router-link>
     </header>
     <LinkList />
   </div>
