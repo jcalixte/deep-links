@@ -25,6 +25,13 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "link" */ '@/views/LinkPage.vue')
   },
   {
+    path: '/link/share/:slug',
+    name: 'LinkShare',
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "link-share" */ '@/views/LinkSharePage.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')

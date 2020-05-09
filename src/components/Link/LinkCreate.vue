@@ -67,7 +67,7 @@
         </fieldset>
         <footer class="buttons is-centered">
           <button class="button is-primary" type="submit">
-            create
+            {{ link ? 'update' : 'create' }}
           </button>
           <slot></slot>
         </footer>
@@ -81,7 +81,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { Action } from 'vuex-class'
 import { QueryString } from '@/models/queryString'
 import { Link } from '@/models/link'
-import { slug, generateUri } from '@/utils'
+import { slug, generateUri, isValidQuery } from '@/utils'
 
 @Component({
   components: {
@@ -132,13 +132,7 @@ export default class LinkCreate extends Vue {
   }
 
   get sanitizedqueries(): QueryString[] {
-    const hasValidKey = (key: string) => !!key
-    const hasValidValue = (value: string | number) =>
-      value !== '' && value !== null && value !== undefined
-
-    return this.queries.filter(
-      (query) => hasValidKey(query.key) && hasValidValue(query.value)
-    )
+    return this.queries.filter(isValidQuery)
   }
 
   get newLink(): Link {

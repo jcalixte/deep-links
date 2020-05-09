@@ -23,7 +23,14 @@ export default new Vuex.Store<State>({
   },
   mutations: {
     [ADD_LINK]: (state, link: Link) => {
-      state.links.push(link)
+      const stateLinkIndex = state.links.findIndex(
+        (l: Link) => l.name === link.name
+      )
+      if (stateLinkIndex > -1) {
+        state.links[stateLinkIndex] = link
+      } else {
+        state.links.push(link)
+      }
     },
     [REMOVE_LINK]: (state, slug: string) => {
       state.links = state.links.filter((link) => link.slug !== slug)
@@ -31,11 +38,6 @@ export default new Vuex.Store<State>({
   },
   actions: {
     addLink({ state, commit }, link: Link) {
-      const stateLink = state.links.find((l: Link) => l.name === link.name)
-      if (stateLink) {
-        return
-      }
-
       commit(ADD_LINK, link)
     },
     removeLink({ commit }, slug: string) {
