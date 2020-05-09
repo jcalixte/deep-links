@@ -1,14 +1,14 @@
 <template>
   <section class="link-list">
-    <ul v-if="links.length">
-      <li v-for="link in links" :key="link.slug" class="link-li">
+    <div v-if="links.length" class="columns no-margin is-multiline is-centered">
+      <div v-for="link in links" :key="link.slug" class="column link-li">
         <LinkItem class="link-item" :link="link">
           <button class="button is-danger" @click="removeLink(link.slug)">
             delete
           </button>
         </LinkItem>
-      </li>
-    </ul>
+      </div>
+    </div>
     <p class="no-link" v-else>
       <router-link class="button is-primary" :to="{ name: 'LinkCreate' }"
         >New link</router-link
@@ -44,6 +44,10 @@ export default class LinkList extends Vue {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .columns {
+    flex: 1;
+  }
 
   .link-li {
     margin: $spacing;

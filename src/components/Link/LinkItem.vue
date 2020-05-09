@@ -1,9 +1,9 @@
 <template>
   <div class="link-item">
-    <h1 class="title is-1">{{ link.name }}</h1>
-    <h2 class="subtitle is-2">
+    <h2 class="title is-2">{{ link.name }}</h2>
+    <h4 class="subtitle is-4">
       <code>{{ uri }}</code>
-    </h2>
+    </h4>
     <LinkShare :link="link" />
     <LinkCreate :link="link" v-if="modify">
       <button class="button is-info" @click="modify = !modify">
