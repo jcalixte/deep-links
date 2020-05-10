@@ -23,7 +23,7 @@ export default class LinkSharePage extends Vue {
     const prefix = url.searchParams.get('prefix') ?? ''
     const path = url.searchParams.get('path') ?? ''
     const queries: QueryString[] = []
-    url.searchParams.forEach((searchParamKey) => {
+    for (const searchParamKey of url.searchParams.keys()) {
       if (searchParamKey.startsWith('query-')) {
         const value = url.searchParams.get(searchParamKey)
         if (value) {
@@ -34,7 +34,8 @@ export default class LinkSharePage extends Vue {
           })
         }
       }
-    })
+    }
+
     const link: Link = {
       name,
       slug: this.slug,
