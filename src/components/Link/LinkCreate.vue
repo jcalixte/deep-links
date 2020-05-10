@@ -18,6 +18,7 @@
               autocomplete="off"
               placeholder="Associate a name with the deeplink"
               v-model="name"
+              :disabled="!!link"
             />
           </div>
         </div>
@@ -80,7 +81,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { Action } from 'vuex-class'
 import { QueryString } from '@/models/queryString'
 import { Link } from '@/models/link'
@@ -100,15 +101,6 @@ export default class LinkCreate extends Vue {
   prefix = ''
   path = ''
   queries: QueryString[] = []
-
-  mounted() {
-    if (this.link) {
-      this.name = this.link.name
-      this.prefix = this.link.prefix
-      this.path = this.link.path
-      this.queries = this.link.queries
-    }
-  }
 
   submit() {
     if (!this.isFormValid) {
@@ -153,6 +145,16 @@ export default class LinkCreate extends Vue {
 
   get generatedURI(): string {
     return generateUri(this.newLink)
+  }
+
+  @Watch('link', { immediate: true })
+  onLinkChange(link: Link | null) {
+    if (link) {
+      this.name = link.name
+      this.prefix = link.prefix
+      this.path = link.path
+      this.queries = link.queries
+    }
   }
 }
 </script>

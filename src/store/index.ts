@@ -23,14 +23,16 @@ export default new Vuex.Store<State>({
   },
   mutations: {
     [ADD_LINK]: (state, link: Link) => {
-      const stateLinkIndex = state.links.findIndex(
+      const newLinks = [...state.links]
+      const stateLinkIndex = newLinks.findIndex(
         (l: Link) => l.name === link.name
       )
       if (stateLinkIndex > -1) {
-        state.links[stateLinkIndex] = link
+        newLinks[stateLinkIndex] = { ...link }
       } else {
-        state.links.push(link)
+        newLinks.push(link)
       }
+      state.links = [...newLinks]
     },
     [REMOVE_LINK]: (state, slug: string) => {
       state.links = state.links.filter((link) => link.slug !== slug)
