@@ -7,6 +7,7 @@
           :id="`${query.key}-key`"
           class="input"
           type="text"
+          autocomplete="off"
           v-model="query.key"
         />
       </div>
@@ -18,6 +19,7 @@
           :id="`${query.key}-value`"
           class="input"
           type="text"
+          autocomplete="off"
           v-model="query.value"
         />
       </div>
@@ -35,8 +37,3 @@ export default class QueryCreate extends Vue {
   query!: QueryString
 }
 </script>
-
-<style scoped lang="scss">
-.query-create {
-}
-</style>

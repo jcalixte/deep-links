@@ -15,6 +15,7 @@
               id="name"
               class="input is-rounded"
               type="text"
+              autocomplete="off"
               placeholder="Associate a name with the deeplink"
               v-model="name"
             />
@@ -29,6 +30,7 @@
               type="text"
               autocorrect="off"
               autocapitalize="none"
+              autocomplete="off"
               placeholder="e.g.: spotify"
               v-model="prefix"
             />
@@ -40,6 +42,7 @@
             <input
               id="path"
               class="input is-rounded"
+              autocomplete="off"
               type="text"
               placeholder="e.g.: album:12345"
               v-model="path"
