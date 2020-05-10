@@ -5,7 +5,7 @@
       <code>{{ uri }}</code>
     </h4>
     <LinkShare :link="link" />
-    <LinkCreate :link="link" v-if="modify">
+    <LinkCreate :link="link" v-if="modify" @updated="modify = false">
       <button class="button is-info" @click="modify = !modify">
         cancel
       </button>

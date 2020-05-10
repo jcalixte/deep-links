@@ -115,12 +115,15 @@ export default class LinkCreate extends Vue {
       return
     }
     this.addLink(this.newLink)
-    this.$router.push({
-      name: 'Link',
-      params: {
-        slug: this.newLink.slug
-      }
-    })
+    if (!this.link) {
+      this.$router.push({
+        name: 'Link',
+        params: {
+          slug: this.newLink.slug
+        }
+      })
+    }
+    this.$emit('updated')
   }
 
   addQuery() {
