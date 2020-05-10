@@ -2,7 +2,9 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/47316c6c-69c8-4b93-b77e-660c41220ed4/deploy-status)](https://app.netlify.com/sites/app-deep-links/deploys)
 
-Easily create deep links to test links in your app [here](https://app-deep-links.netlify.app).
+Easily test deep links for your mobile and web apps [here](https://app-deep-links.netlify.app).
+
+![demo](./docs/deep-links.gif)
 
 ## Project setup
 
